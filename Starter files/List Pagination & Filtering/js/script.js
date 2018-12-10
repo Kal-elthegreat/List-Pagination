@@ -19,7 +19,7 @@ FSJS project 2 - List Filter and Pagination
 const mainDiv = document.querySelector('.page');
 const listItems = document.getElementsByTagName('LI')
 const studentCollection = document.getElementsByTagName('H3');
-//var buttons = document.querySelectorAll('a');
+const buttons = document.getElementsByTagName('A');
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -32,22 +32,21 @@ const studentCollection = document.getElementsByTagName('H3');
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-// hide all list items
-for( let i = 0; i < listItems.length; i++){
-   listItems[i].style.display = 'none';
-}
-// display range of 10
- range = (start, stop) => {
-   for( let i = start; i < stop; i ++) { 
-   listItems[i].style.display = '';
+
+
+showPage = (list, page) => {
+   // hide all items
+   for( let i = 0; i < listItems.length; i++){
+      listItems[i].style.display = 'none';
+   }
+   //show items based on page #
+      for (let i = 0; i < list.length; i++){
+         if ([i] >= (page * 10) - 10 && [i] < page * 10){
+         list[i].style.display = ''
+      }    
    }
 }
-
-
-/*** 
-    appendPageLinks function` still needs to add 
-   functionality to the pagination buttons.
-***/
+showPage(listItems, 1);
 
 appendPageLinks = () => { // creates new elements & appends to parents 
    const div = document.createElement('div');
@@ -67,12 +66,20 @@ appendPageLinks = () => { // creates new elements & appends to parents
    }
    ul.firstElementChild.firstElementChild.className = 'active';
 
+  // button funcitonality
+  for ( let i = 0; i < buttons.length; i++){
+   buttons[i].addEventListener( 'click', function(){
+      showPage(listItems,buttons[i].textContent)
+   })
+}
+  
 }
 appendPageLinks();
 
-// buttons[0].addEventListener('click', (e) => {
-//    e.target = 'A';
-
-
-// })
-
+/********* IGNORE CODE BELOW THIS LINE.  *************/
+// display range of 10
+//  range = (start, stop) => {
+//    for( let i = start; i < stop; i ++) { 
+//    listItems[i].style.display = '';
+//    }
+// }
