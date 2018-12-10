@@ -17,7 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const mainDiv = document.querySelector('.page');
-const listItems = document.getElementsByTagName('LI')
+const listItems = document.getElementsByClassName('student-item')
 const studentCollection = document.getElementsByTagName('H3');
 const buttons = document.getElementsByTagName('A');
 
@@ -48,25 +48,27 @@ showPage = (list, page) => {
 }
 showPage(listItems, 1);
 
-appendPageLinks = () => { // creates new elements & appends to parents 
+appendPageLinks = () => { 
+   // create parents
    const div = document.createElement('div');
-   div.className = 'pagination';
+   div.className = 'pagination'; // assign class to display buttons
    mainDiv.appendChild(div);
 
    const ul = document.createElement('ul');
    div.appendChild(ul);
 
-   for (let i = 0; i < studentCollection.length; i += 10){ // li & a elememnts need to be looped together
+   // create new elements & append to parents 
+   for (let i = 0; i < studentCollection.length; i += 10){ // increment by 10 bc 10 ppl are shown on each page
       const li = document.createElement('li');
       ul.appendChild(li);
       const link = document.createElement('a');
       link.setAttribute('href', '#');
-      link.textContent = (i / 10) + 1;
+      link.textContent = (i / 10) + 1; // button numbers
       li.appendChild(link); 
    }
    ul.firstElementChild.firstElementChild.className = 'active';
 
-  // button funcitonality
+  // button functionality
   for ( let i = 0; i < buttons.length; i++){
    buttons[i].addEventListener( 'click', function(){
       showPage(listItems,buttons[i].textContent)
