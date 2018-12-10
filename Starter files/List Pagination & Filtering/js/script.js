@@ -16,35 +16,63 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-
-
-
+const mainDiv = document.querySelector('.page');
+const listItems = document.getElementsByTagName('LI')
+const studentCollection = document.getElementsByTagName('H3');
+//var buttons = document.querySelectorAll('a');
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
    list except for the ten you want to show.
 
    Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
      - Remember that a function `parameter` goes in the parens when 
        you initially define the function, and it acts as a variable 
        or a placeholder to represent the actual function `argument` 
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-
-
+// hide all list items
+for( let i = 0; i < listItems.length; i++){
+   listItems[i].style.display = 'none';
+}
+// display range of 10
+ range = (start, stop) => {
+   for( let i = start; i < stop; i ++) { 
+   listItems[i].style.display = '';
+   }
+}
 
 
 /*** 
-   Create the `appendPageLinks function` to generate, append, and add 
+    appendPageLinks function` still needs to add 
    functionality to the pagination buttons.
 ***/
 
+appendPageLinks = () => { // creates new elements & appends to parents 
+   const div = document.createElement('div');
+   div.className = 'pagination';
+   mainDiv.appendChild(div);
+
+   const ul = document.createElement('ul');
+   div.appendChild(ul);
+
+   for (let i = 0; i < studentCollection.length; i += 10){ // li & a elememnts need to be looped together
+      const li = document.createElement('li');
+      ul.appendChild(li);
+      const link = document.createElement('a');
+      link.setAttribute('href', '#');
+      link.textContent = (i / 10) + 1;
+      li.appendChild(link); 
+   }
+   ul.firstElementChild.firstElementChild.className = 'active';
+
+}
+appendPageLinks();
+
+// buttons[0].addEventListener('click', (e) => {
+//    e.target = 'A';
 
 
+// })
 
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
