@@ -5,30 +5,29 @@ FSJS project 2 - List Filter and Pagination
    
 // Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
 
-const mainDiv = document.querySelector('.page');
-const listItems = document.getElementsByClassName('student-item')
+const listItemCollection = document.getElementsByClassName('student-item')
+
 const studentCollection = document.getElementsByTagName('H3');
 const buttons = document.getElementsByTagName('A');
 
 showPage = (list, page) => {
-   // hide all items
-   for( let i = 0; i < listItems.length; i++){
-      listItems[i].style.display = 'none';
-   }
-   //show items based on page #
-      for (let i = 0; i < list.length; i++){
-         if ([i] >= (page * 10) - 10 && [i] < page * 10){
-         list[i].style.display = ''
-      }    
-   }
+   [...list].forEach( item => item.style.display = 'none');
+
+   [...list].forEach( (item,index) => {
+      if ( index < (page * 10) && index >= (page * 10) - 10){
+         item.style.display = '';
+      }
+   });
 }
 
-showPage(listItems, 1);
+showPage(listItemCollection, 1);
 
 appendPageLinks = () => { 
-   // create parents
+   //debugger;
+   // grab main div and create div to hold link buttons 7 append
+   const mainDiv = document.querySelector('.page');
    const div = document.createElement('div');
-   div.className = 'pagination'; // assign class to display below
+   div.className = 'pagination';
    mainDiv.appendChild(div);
 
    const ul = document.createElement('ul');
@@ -48,7 +47,7 @@ appendPageLinks = () => {
   // page button functionality
   for ( let i = 0; i < buttons.length; i++){
    buttons[i].addEventListener( 'click', function(){
-      showPage(listItems,buttons[i].textContent)
+      showPage(listItemCollection,buttons[i].textContent)
       for ( let i = 0; i < buttons.length; i++){
          buttons[i].className = ''; // must set all classes to empty before adding to selected page
       }
@@ -65,6 +64,6 @@ appendPageLinks();
 // display range of 10
 //  range = (start, stop) => {
 //    for( let i = start; i < stop; i ++) { 
-//    listItems[i].style.display = '';
+//    listItemCollection[i].style.display = '';
 //    }
 // }
