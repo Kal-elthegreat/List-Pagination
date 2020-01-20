@@ -9,4 +9,4 @@ This project was originally completed **Dec 10 2018**.
 
 As of **Jan 19 2020** it has been refactored and updated to show my growth.
 
-A `fun` next step would be to make this page a little more interactive by allowing users to determine the list size they want, maybe by increments of 5,10,20. 😉 stay tuned this might just become a thing!
+A `fun` next step would be to make this page a little more interactive by allowing users to select their list size, maybe by increments of 5, 10, 20 with 10 being the default.  😉 stay tuned this might just become a thing!
