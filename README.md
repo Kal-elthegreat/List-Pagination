@@ -1,4 +1,4 @@
-# TechDegree-Unit-2
+# TechDegree-Unit-2: LIST PAGINATION & FILTERING
 
 The goal of this project was to dynamically create a working page with any givien list of students. The goal was to only show ten users per page and dynamically create page links that let you navigate back in forth between pages. The big focus of this project was looping through arrays for the purpose of:
 1. making css changes to display users
